@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов (простой)»
 
 * Студент: [Matvey Nekrasov](https://up.htmlacademy.ru/react/12/user/1427725).
-* Наставник: `Неизвестно`.
+* Наставник: [Михаил Кислый](https://htmlacademy.ru/profile/id1118577).
 
 ---
 
