@@ -1,4 +1,4 @@
-function MainScreen(): JSX.Element {
+function LoginScreen(): JSX.Element {
   return (
     <>
       <header className="header">
@@ -42,4 +42,4 @@ function MainScreen(): JSX.Element {
   );
 }
 
-export default MainScreen;
+export default LoginScreen;
