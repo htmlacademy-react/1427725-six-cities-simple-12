@@ -3,6 +3,7 @@ import { AppRoute } from '../../const';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
+import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 
 type AppProps = {
   cardsCount: number;
@@ -23,6 +24,10 @@ function App({ cardsCount }: AppProps): JSX.Element {
         <Route
           path={AppRoute.Room}
           element={<RoomScreen />}
+        />
+        <Route
+          path="*"
+          element={<NotFoundScreen />}
         />
       </Routes>
     </BrowserRouter>
