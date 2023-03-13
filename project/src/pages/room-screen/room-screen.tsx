@@ -4,7 +4,7 @@ import Logo from '../../components/logo/logo';
 function RoomScreen(): JSX.Element {
   return (
     <>
-      <header className="header">href=
+      <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
