@@ -1,4 +1,4 @@
-import Card from '../../components/card/card';
+import CardsList from '../../components/cards-list/cards-list';
 import Logo from '../../components/logo/logo';
 import { Offers } from '../../types/offer';
 
@@ -92,12 +92,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer) => {
-                  const keyValue = `${offer.id}-${offer.title}`;
-                  return <Card offer={offer} key={keyValue} />;
-                })}
-              </div>
+              <CardsList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
