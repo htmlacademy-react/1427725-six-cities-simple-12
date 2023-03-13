@@ -1,11 +1,12 @@
 import Card from '../../components/card/card';
 import Logo from '../../components/logo/logo';
+import { Offers } from '../../types/offer';
 
 type MainScreenProps = {
-  cardsCount: number;
+  offers: Offers;
 }
 
-function MainScreen({ cardsCount }: MainScreenProps): JSX.Element {
+function MainScreen({ offers }: MainScreenProps): JSX.Element {
   return (
     <>
       <header className="header">
@@ -92,7 +93,10 @@ function MainScreen({ cardsCount }: MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array(cardsCount).fill(<Card />)}
+                {offers.map((offer) => {
+                  const keyValue = `${offer.id}-${offer.title}`;
+                  return <Card offer={offer} key={keyValue} />;
+                })}
               </div>
             </section>
             <div className="cities__right-section">
