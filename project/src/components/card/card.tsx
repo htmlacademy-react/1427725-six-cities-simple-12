@@ -1,14 +1,21 @@
+import { useState } from 'react';
 import { Offer } from '../../types/offer';
 
 type CardProps = {
   offer: Offer;
 }
 
+type ActiveCard = Offer | null;
+
 function Card({ offer }: CardProps): JSX.Element {
   const { isPremium, price, rating, title, type } = offer;
+  const [, setActiveCard] = useState<ActiveCard>(null);
 
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card"
+      onMouseEnter={() => setActiveCard(offer)}
+      onMouseLeave={() => setActiveCard(null)}
+    >
       {isPremium ? (
         <div className="place-card__mark">
           <span>Premium</span>
