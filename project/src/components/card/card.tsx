@@ -10,7 +10,7 @@ type CardProps = {
 type ActiveCard = Offer | null;
 
 function Card({ offer }: CardProps): JSX.Element {
-  const { isPremium, price, rating, title, type } = offer;
+  const { isPremium, previewImage, price, rating, title, type } = offer;
   const [, setActiveCard] = useState<ActiveCard>(null);
   const roomLink = `${AppRoute.Room}/${offer.id}`;
 
@@ -25,7 +25,7 @@ function Card({ offer }: CardProps): JSX.Element {
         </div>) : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={roomLink}>
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place"></img>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place"></img>
         </Link>
       </div>
       <div className="place-card__info">
