@@ -1,23 +1,20 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { Offer } from '../../types/offer';
+import { ActiveOffer, Offer } from '../../types/offer';
 
 type CardProps = {
   offer: Offer;
+  onActiveCardChange: (activeOffer: ActiveOffer) => void;
 }
 
-type ActiveCard = Offer | null;
-
-function Card({ offer }: CardProps): JSX.Element {
+function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
   const { isPremium, previewImage, price, rating, title, type } = offer;
-  const [, setActiveCard] = useState<ActiveCard>(null);
   const roomLink = `${AppRoute.Room}/${offer.id}`;
 
   return (
     <article className="cities__card place-card"
-      onMouseEnter={() => setActiveCard(offer)}
-      onMouseLeave={() => setActiveCard(null)}
+      onMouseEnter={() => onActiveCardChange(offer)}
+      onMouseLeave={() => onActiveCardChange(null)}
     >
       {isPremium ? (
         <div className="place-card__mark">

@@ -1,13 +1,20 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardsList from '../../components/cards-list/cards-list';
 import Logo from '../../components/logo/logo';
-import { Offers } from '../../types/offer';
+import { ActiveOffer, Offers } from '../../types/offer';
 
 type MainScreenProps = {
   offers: Offers;
 }
 
 function MainScreen({ offers }: MainScreenProps): JSX.Element {
+  const [, setActiveCard] = useState<ActiveOffer>(null);
+
+  const handleActiveCardChange = (offer: ActiveOffer) => {
+    setActiveCard(offer);
+  };
+
   return (
     <>
       <header className="header">
@@ -93,7 +100,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <CardsList offers={offers} />
+              <CardsList offers={offers} onActiveCardChange={handleActiveCardChange} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
