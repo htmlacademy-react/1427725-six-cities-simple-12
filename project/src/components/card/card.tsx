@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { Offer } from '../../types/offer';
 
 type CardProps = {
@@ -10,6 +12,7 @@ type ActiveCard = Offer | null;
 function Card({ offer }: CardProps): JSX.Element {
   const { isPremium, price, rating, title, type } = offer;
   const [, setActiveCard] = useState<ActiveCard>(null);
+  const roomLink = `${AppRoute.Room}/${offer.id}`;
 
   return (
     <article className="cities__card place-card"
@@ -21,9 +24,9 @@ function Card({ offer }: CardProps): JSX.Element {
           <span>Premium</span>
         </div>) : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={roomLink}>
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place"></img>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -40,7 +43,7 @@ function Card({ offer }: CardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={roomLink}>{title}</Link>
         </h2>
         <p className="place-card__type" style={{ textTransform: 'capitalize' }}>{type}</p>
       </div>
