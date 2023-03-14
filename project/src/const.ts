@@ -4,3 +4,5 @@ export enum AppRoute {
   RoomId = '/offer/:id',
   Room = '/offer',
 }
+
+export const REVIEW_MIN_LENGTH = 50;
