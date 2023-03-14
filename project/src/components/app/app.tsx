@@ -4,25 +4,28 @@ import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
+import { Offers } from '../../types/offer';
+import { Reviews } from '../../types/review';
 
 type AppProps = {
-  cardsCount: number;
+  offers: Offers;
+  reviews: Reviews;
 }
 
-function App({ cardsCount }: AppProps): JSX.Element {
+function App({ offers, reviews }: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen cardsCount={cardsCount} />}
+          element={<MainScreen offers={offers} />}
         />
         <Route
           path={AppRoute.Login}
           element={<LoginScreen />}
         />
         <Route
-          path={AppRoute.Room}
+          path={AppRoute.RoomId}
           element={<RoomScreen />}
         />
         <Route
