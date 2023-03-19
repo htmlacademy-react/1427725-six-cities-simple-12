@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import CardsList from '../../components/cards-list/cards-list';
 import Logo from '../../components/logo/logo';
 import { ActiveOffer, Offers } from '../../types/offer';
+import Map from '../../components/map/map';
 
 type MainScreenProps = {
   offers: Offers;
 }
 
 function MainScreen({ offers }: MainScreenProps): JSX.Element {
-  const [, setActiveCard] = useState<ActiveOffer>(null);
+  const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
 
   const handleActiveCardChange = (offer: ActiveOffer) => {
     setActiveCard(offer);
@@ -103,7 +104,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
               <CardsList offers={offers} onActiveCardChange={handleActiveCardChange} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map city={offers[0].city} offers={offers} selectedOffer={activeCard}></Map>
             </div>
           </div>
         </div>
