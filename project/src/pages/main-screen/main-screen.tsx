@@ -10,7 +10,7 @@ type MainScreenProps = {
 }
 
 function MainScreen({ offers }: MainScreenProps): JSX.Element {
-  const [, setActiveCard] = useState<ActiveOffer>(null);
+  const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
 
   const handleActiveCardChange = (offer: ActiveOffer) => {
     setActiveCard(offer);
@@ -104,7 +104,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
               <CardsList offers={offers} onActiveCardChange={handleActiveCardChange} />
             </section>
             <div className="cities__right-section">
-              <Map offers={offers}></Map>
+              <Map city={offers[0].city} offers={offers} selectedOffer={activeCard}></Map>
             </div>
           </div>
         </div>

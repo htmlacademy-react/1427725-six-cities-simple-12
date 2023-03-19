@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { ActiveOffer, Offer } from '../../types/offer';
+import { MouseEvent } from 'react';
 
 type CardProps = {
   offer: Offer;
@@ -11,10 +12,14 @@ function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
   const { isPremium, previewImage, price, rating, title, type } = offer;
   const roomLink = `${AppRoute.Room}/${offer.id}`;
 
+  const listItemHoverHandler = (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    onActiveCardChange(offer);
+  };
+
   return (
     <article className="cities__card place-card"
-      onMouseEnter={() => onActiveCardChange(offer)}
-      onMouseLeave={() => onActiveCardChange(null)}
+      onMouseEnter={listItemHoverHandler}
     >
       {isPremium ? (
         <div className="place-card__mark">

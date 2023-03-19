@@ -36,4 +36,4 @@ export type Offer = {
 
 export type Offers = Offer[];
 
-export type ActiveOffer = Offer | null;
+export type ActiveOffer = Offer | undefined;
