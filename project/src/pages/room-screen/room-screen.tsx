@@ -2,8 +2,13 @@ import { Link } from 'react-router-dom';
 import CommentForm from '../../components/comment-form/comment-form';
 import Logo from '../../components/logo/logo';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import { Reviews } from '../../types/review';
 
-function RoomScreen(): JSX.Element {
+type RoomScreenProps = {
+  reviews: Reviews;
+}
+
+function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
   return (
     <>
       <header className="header">
@@ -145,7 +150,7 @@ function RoomScreen(): JSX.Element {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewsList />
+                <ReviewsList reviews={reviews} />
                 <CommentForm />
               </section>
             </div>
