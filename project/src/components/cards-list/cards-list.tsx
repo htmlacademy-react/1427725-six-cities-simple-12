@@ -8,12 +8,13 @@ type CardsListProps = {
 
 function CardsList({ offers, onActiveCardChange }: CardsListProps): JSX.Element {
   return (
-    <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => {
+    <> {
+      offers.map((offer) => {
         const keyValue = `${offer.id}-${offer.title}`;
         return <Card offer={offer} key={keyValue} onActiveCardChange={onActiveCardChange} />;
-      })}
-    </div>
+      })
+    }
+    </>
   );
 }
 

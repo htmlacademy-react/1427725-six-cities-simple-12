@@ -6,6 +6,7 @@ import RoomScreen from '../../pages/room-screen/room-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { Offers } from '../../types/offer';
 import { Reviews } from '../../types/review';
+import { useState } from 'react';
 
 type AppProps = {
   offers: Offers;
@@ -13,6 +14,7 @@ type AppProps = {
 }
 
 function App({ offers, reviews }: AppProps): JSX.Element {
+  const [city] = useState(offers[0].city);
   return (
     <BrowserRouter>
       <Routes>
@@ -26,7 +28,7 @@ function App({ offers, reviews }: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.RoomId}
-          element={<RoomScreen reviews={reviews} />}
+          element={<RoomScreen reviews={reviews} city={city} offersNearby={offers.slice(0, 3)} />}
         />
         <Route
           path="*"

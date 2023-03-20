@@ -101,10 +101,14 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <CardsList offers={offers} onActiveCardChange={handleActiveCardChange} />
+              <div className="cities__places-list places__list tabs__content">
+                <CardsList offers={offers} onActiveCardChange={handleActiveCardChange} />
+              </div>
             </section>
             <div className="cities__right-section">
-              <Map city={offers[0].city} offers={offers} selectedOffer={activeCard}></Map>
+              <section className="cities__map map">
+                <Map city={offers[0].city} offers={offers} selectedOffer={activeCard}></Map>
+              </section>
             </div>
           </div>
         </div>
