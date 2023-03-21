@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { ActiveOffer, Offer } from '../../types/offer';
 import { MouseEvent } from 'react';
+import { convertRatingToWitdh } from '../../utils';
 
 type CardProps = {
   offer: Offer;
@@ -40,7 +41,7 @@ function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${Math.round(rating) * 20}%` }}></span>
+            <span style={convertRatingToWitdh(rating)}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

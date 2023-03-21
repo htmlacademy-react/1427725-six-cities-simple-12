@@ -80,7 +80,7 @@ export const offers: Offers = [
       'https://12.react.pages.academy/static/hotel/15.jpg'
     ],
     title: 'Waterfront with extraordinary view',
-    isPremium: false,
+    isPremium: true,
     rating: 3.5,
     type: 'apartment',
     bedrooms: 4,
