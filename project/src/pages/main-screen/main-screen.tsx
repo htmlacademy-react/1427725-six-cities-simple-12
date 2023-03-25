@@ -4,6 +4,7 @@ import CardsList from '../../components/cards-list/cards-list';
 import Logo from '../../components/logo/logo';
 import { ActiveOffer, Offers } from '../../types/offer';
 import Map from '../../components/map/map';
+import CitiesList from '../../components/cities-list/cities-list';
 
 type MainScreenProps = {
   offers: Offers;
@@ -48,36 +49,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Paris</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Cologne</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Brussels</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item tabs__item--active" to="/">
-                  <span>Amsterdam</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Hamburg</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Dusseldorf</span>
-                </Link>
-              </li>
+              <CitiesList />
             </ul>
           </section>
         </div>
