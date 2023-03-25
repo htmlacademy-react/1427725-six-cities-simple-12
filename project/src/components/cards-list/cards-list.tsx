@@ -8,12 +8,12 @@ type CardsListProps = {
 }
 
 function CardsList({ offers, onActiveCardChange }: CardsListProps): JSX.Element {
-  const city = useAppSelector((state) => state.city);
+  const cityName = useAppSelector((state) => state.cityName);
 
   return (
     <> {
       offers
-        .filter((offer) => offer.city.name === city)
+        .filter((offer) => offer.city.name === cityName)
         .map((offer) => {
           const keyValue = `${offer.id}-${offer.title}`;
           return <Card offer={offer} key={keyValue} onActiveCardChange={onActiveCardChange} />;
