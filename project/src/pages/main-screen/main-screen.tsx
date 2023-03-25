@@ -5,6 +5,7 @@ import Logo from '../../components/logo/logo';
 import { ActiveOffer, Offers } from '../../types/offer';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
+import { useAppSelector } from '../../hooks';
 
 type MainScreenProps = {
   offers: Offers;
@@ -12,6 +13,8 @@ type MainScreenProps = {
 
 function MainScreen({ offers }: MainScreenProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
+  const activeCity = useAppSelector((state) => state.cityName);
+  const cityOffersCount = offers.filter((offer) => offer.city.name === activeCity).length;
 
   const handleActiveCardChange = (offer: ActiveOffer) => {
     setActiveCard(offer);
@@ -57,7 +60,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{cityOffersCount} {cityOffersCount === 1 ? 'place' : 'places'} to stay in {activeCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
