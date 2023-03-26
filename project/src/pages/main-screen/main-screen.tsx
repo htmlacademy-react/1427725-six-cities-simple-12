@@ -14,7 +14,9 @@ type MainScreenProps = {
 function MainScreen({ offers }: MainScreenProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
   const activeCity = useAppSelector((state) => state.cityName);
-  const cityOffersCount = offers.filter((offer) => offer.city.name === activeCity).length;
+
+  const cityOffers = offers.filter((offer) => offer.city.name === activeCity);
+  const cityOffersCount = cityOffers.length;
   const isPageEmpty = cityOffersCount === 0;
 
   const handleActiveCardChange = (offer: ActiveOffer) => {
@@ -93,12 +95,12 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  <CardsList offers={offers} onActiveCardChange={handleActiveCardChange} />
+                  <CardsList offers={cityOffers} onActiveCardChange={handleActiveCardChange} />
                 </div>
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map city={offers[0].city} offers={offers} selectedOffer={activeCard}></Map>
+                  <Map offers={cityOffers} selectedOffer={activeCard}></Map>
                 </section>
               </div>
             </div>

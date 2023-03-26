@@ -3,18 +3,17 @@ import CardsList from '../../components/cards-list/cards-list';
 import CommentForm from '../../components/comment-form/comment-form';
 import Logo from '../../components/logo/logo';
 import ReviewsList from '../../components/reviews-list/reviews-list';
-import { ActiveOffer, City, Offers } from '../../types/offer';
+import { ActiveOffer, Offers } from '../../types/offer';
 import { Reviews } from '../../types/review';
 import Map from '../../components/map/map';
 import { useState } from 'react';
 
 type RoomScreenProps = {
   reviews: Reviews;
-  city: City;
   offersNearby: Offers;
 }
 
-function RoomScreen({ reviews, city, offersNearby }: RoomScreenProps): JSX.Element {
+function RoomScreen({ reviews, offersNearby }: RoomScreenProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
 
   const handleActiveCardChange = (offer: ActiveOffer) => {
@@ -168,7 +167,7 @@ function RoomScreen({ reviews, city, offersNearby }: RoomScreenProps): JSX.Eleme
             </div>
           </div>
           <section className="property__map map">
-            <Map city={city} offers={offersNearby} selectedOffer={activeCard}></Map>
+            <Map offers={offersNearby} selectedOffer={activeCard}></Map>
           </section>
         </section>
         <div className="container">
