@@ -8,6 +8,7 @@ import CitiesList from '../../components/cities-list/cities-list';
 import { useAppSelector } from '../../hooks';
 import Sorting from '../../components/sorting/sorting';
 import { initialSortType } from '../../const';
+import { sortOffers } from '../../utils';
 
 type MainScreenProps = {
   offers: Offers;
@@ -21,6 +22,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
   const cityOffers = offers.filter((offer) => offer.city.name === activeCity);
   const cityOffersCount = cityOffers.length;
   const isPageEmpty = cityOffersCount === 0;
+  sortOffers(cityOffers, sortType);
 
   const handleActiveCardChange = (offer: ActiveOffer) => {
     setActiveCard(offer);
