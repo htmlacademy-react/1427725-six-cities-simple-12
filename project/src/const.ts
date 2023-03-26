@@ -23,3 +23,12 @@ export enum CityName {
 }
 
 export const initialCity = CityName.Paris;
+
+export const SortType = {
+  Popular: { text: 'Popular', id: 0 },
+  PriceLowToHigh: { text: 'Price: low to high', id: 1 },
+  PriceHighToLow: { text: 'Price: high to low', id: 2 },
+  TopRatedFirst: { text: 'Top rated first', id: 3 },
+};
+
+export const initialSortType = SortType.Popular;
