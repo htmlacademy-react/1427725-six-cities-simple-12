@@ -7,6 +7,7 @@ import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import { useAppSelector } from '../../hooks';
 import Sorting from '../../components/sorting/sorting';
+import { initialSortType } from '../../const';
 
 type MainScreenProps = {
   offers: Offers;
@@ -15,6 +16,7 @@ type MainScreenProps = {
 function MainScreen({ offers }: MainScreenProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
   const activeCity = useAppSelector((state) => state.cityName);
+  const [sortType, setSortType] = useState(initialSortType);
 
   const cityOffers = offers.filter((offer) => offer.city.name === activeCity);
   const cityOffersCount = cityOffers.length;
@@ -80,7 +82,7 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{cityOffersCount} {cityOffersCount === 1 ? 'place' : 'places'} to stay in {activeCity}</b>
-                <Sorting />
+                <Sorting sortType={sortType} onChangeSortClick={(newSortType) => setSortType(newSortType)} />
                 <div className="cities__places-list places__list tabs__content">
                   <CardsList offers={cityOffers} onActiveCardChange={handleActiveCardChange} />
                 </div>

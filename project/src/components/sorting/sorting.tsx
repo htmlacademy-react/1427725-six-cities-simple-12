@@ -1,23 +1,39 @@
 import { useState } from 'react';
 import cn from 'classnames';
+import { initialSortType, SortType } from '../../const';
 
-function Sorting(): JSX.Element {
+type SortTypeItem = typeof initialSortType;
+
+type SortingProps = {
+  sortType: SortTypeItem;
+  onChangeSortClick: (sortType: SortTypeItem) => void;
+}
+
+function Sorting({ sortType, onChangeSortClick }: SortingProps): JSX.Element {
   const [isOpened, setIsOpened] = useState(false);
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={() => { setIsOpened(!isOpened); }}>
-        Popular
+        {sortType.text}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       <ul className={cn('places__options', 'places__options--custom', { 'places__options--opened': isOpened })}>
-        <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-        <li className="places__option" tabIndex={0}>Price: low to high</li>
-        <li className="places__option" tabIndex={0}>Price: high to low</li>
-        <li className="places__option" tabIndex={0}>Top rated first</li>
+        {Object.values(SortType).map((sortTypeValue) => (
+          <li
+            tabIndex={0}
+            key={sortTypeValue.id}
+            className={cn('places__option', { 'places__option--active': sortType === sortTypeValue })}
+            onClick={() => {
+              onChangeSortClick(sortTypeValue);
+              setIsOpened(false);
+            }}
+          >{sortTypeValue.text}
+          </li>
+        ))}
       </ul>
     </form>
   );
