@@ -11,8 +11,7 @@ const initialState = {
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setCity, (state, action) => {
-      const { cityName } = action.payload;
-      state.cityName = cityName;
+      state.cityName = action.payload;
     })
     .addCase(setOffers, (state, action) => {
       const { offers } = action.payload;

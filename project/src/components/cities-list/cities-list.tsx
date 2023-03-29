@@ -16,7 +16,7 @@ function CitiesList(): JSX.Element {
             <Link
               className={`locations__item-link tabs__item ${cityName === activeCity ? 'tabs__item--active' : ''} `}
               to="/"
-              onClick={() => { dispatch(setCity({ cityName })); }}
+              onClick={() => { dispatch(setCity(cityName)); }}
             >
               <span>{cityName}</span>
             </Link>
