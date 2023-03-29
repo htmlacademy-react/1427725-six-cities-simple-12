@@ -4,4 +4,4 @@ import { Offers } from '../types/offer';
 
 export const setCity = createAction<CityName>('page/setCity');
 
-export const setOffers = createAction<{ offers: Offers }>('setOffers');
+export const loadOffers = createAction<Offers>('data/loadOffers');
