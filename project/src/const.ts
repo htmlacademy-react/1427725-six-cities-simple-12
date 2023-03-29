@@ -38,3 +38,9 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum APIRoute {
+  Hotels = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
