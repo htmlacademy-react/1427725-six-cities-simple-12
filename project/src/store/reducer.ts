@@ -1,11 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { initialCity } from '../const';
-import { Offers } from '../types/offer';
+import { AuthorizationStatus, initialCity } from '../const';
 import { setCity, loadOffers } from './action';
+import { offers } from '../mocks/offers';
+
 
 const initialState = {
   cityName: initialCity,
-  offers: [] as Offers,
+  offers,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
