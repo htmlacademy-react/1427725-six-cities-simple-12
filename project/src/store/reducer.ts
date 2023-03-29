@@ -7,14 +7,12 @@ type InitalState = {
   cityName: CityName;
   offers: Offers;
   authorizationStatus: AuthorizationStatus;
-  error: string | null;
 }
 
 const initialState: InitalState = {
   cityName: initialCity,
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
-  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
