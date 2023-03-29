@@ -3,17 +3,19 @@ import CardsList from '../../components/cards-list/cards-list';
 import CommentForm from '../../components/comment-form/comment-form';
 import Logo from '../../components/logo/logo';
 import ReviewsList from '../../components/reviews-list/reviews-list';
-import { ActiveOffer, Offers } from '../../types/offer';
+import { ActiveOffer } from '../../types/offer';
 import { Reviews } from '../../types/review';
 import Map from '../../components/map/map';
 import { useState } from 'react';
+import { useAppSelector } from '../../hooks';
 
 type RoomScreenProps = {
   reviews: Reviews;
-  offersNearby: Offers;
 }
 
-function RoomScreen({ reviews, offersNearby }: RoomScreenProps): JSX.Element {
+function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
+  const offersNearby = offers.slice(0, 3);
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
 
   const handleActiveCardChange = (offer: ActiveOffer) => {

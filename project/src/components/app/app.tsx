@@ -4,21 +4,19 @@ import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import { Offers } from '../../types/offer';
 import { Reviews } from '../../types/review';
 
 type AppProps = {
-  offers: Offers;
   reviews: Reviews;
 }
 
-function App({ offers, reviews }: AppProps): JSX.Element {
+function App({ reviews }: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen offers={offers} />}
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.Login}
@@ -26,7 +24,7 @@ function App({ offers, reviews }: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.RoomId}
-          element={<RoomScreen reviews={reviews} offersNearby={offers.slice(0, 3)} />}
+          element={<RoomScreen reviews={reviews} />}
         />
         <Route
           path="*"

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardsList from '../../components/cards-list/cards-list';
 import Logo from '../../components/logo/logo';
-import { ActiveOffer, Offers } from '../../types/offer';
+import { ActiveOffer } from '../../types/offer';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import { useAppSelector } from '../../hooks';
@@ -10,11 +10,8 @@ import Sorting from '../../components/sorting/sorting';
 import { initialSortType } from '../../const';
 import { sortOffers } from '../../utils';
 
-type MainScreenProps = {
-  offers: Offers;
-}
-
-function MainScreen({ offers }: MainScreenProps): JSX.Element {
+function MainScreen(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
   const activeCity = useAppSelector((state) => state.cityName);
   const [sortType, setSortType] = useState(initialSortType);
