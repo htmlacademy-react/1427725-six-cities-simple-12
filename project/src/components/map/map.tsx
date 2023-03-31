@@ -40,7 +40,7 @@ function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedOffer !== undefined && offer.title === selectedOffer.title
+            selectedOffer !== undefined && offer.id === selectedOffer.id
               ? currentCustomIcon
               : defaultCustomIcon
           )
