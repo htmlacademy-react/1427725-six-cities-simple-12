@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import CardsList from '../../components/cards-list/cards-list';
 import CommentForm from '../../components/comment-form/comment-form';
 import Logo from '../../components/logo/logo';
@@ -9,6 +8,7 @@ import Map from '../../components/map/map';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import { Helmet } from 'react-helmet-async';
+import HeaderProfile from '../../components/header-profile/header-profile';
 
 type RoomScreenProps = {
   reviews: Reviews;
@@ -36,19 +36,7 @@ function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
               <Logo />
             </div>
             <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <div className="header__nav-profile">
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </div>
-                </li>
-                <li className="header__nav-item">
-                  <Link className="header__nav-link" to="/">
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
-              </ul>
+              <HeaderProfile />
             </nav>
           </div>
         </div>
