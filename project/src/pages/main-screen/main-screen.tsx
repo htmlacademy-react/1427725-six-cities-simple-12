@@ -9,6 +9,7 @@ import { useAppSelector } from '../../hooks';
 import Sorting from '../../components/sorting/sorting';
 import { initialSortType } from '../../const';
 import { sortOffers } from '../../utils';
+import HeaderProfile from '../../components/header-profile/header-profile';
 
 function MainScreen(): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
@@ -38,19 +39,7 @@ function MainScreen(): JSX.Element {
               <Logo />
             </div>
             <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <div className="header__nav-profile">
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </div>
-                </li>
-                <li className="header__nav-item">
-                  <Link className="header__nav-link" to="/">
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
-              </ul>
+              <HeaderProfile />
             </nav>
           </div>
         </div>
