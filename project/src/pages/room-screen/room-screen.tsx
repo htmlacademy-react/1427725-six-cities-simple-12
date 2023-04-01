@@ -9,12 +9,14 @@ import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import { Helmet } from 'react-helmet-async';
 import HeaderProfile from '../../components/header-profile/header-profile';
+import { AuthorizationStatus } from '../../const';
 
 type RoomScreenProps = {
   reviews: Reviews;
 }
 
 function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const offers = useAppSelector((state) => state.offers);
   const offersNearby = offers.slice(0, 3);
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
@@ -157,7 +159,7 @@ function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
               </div>
               <section className="property__reviews reviews">
                 <ReviewsList reviews={reviews} />
-                <CommentForm />
+                {authorizationStatus === AuthorizationStatus.Auth ? <CommentForm /> : null}
               </section>
             </div>
           </div>
