@@ -1,9 +1,14 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 
 function LoginScreen(): JSX.Element {
   return (
-    <>
+    <div className="page page--gray page--login">
+      <Helmet>
+        <title>six cities simple: authorization</title>
+      </Helmet>
+
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -39,7 +44,7 @@ function LoginScreen(): JSX.Element {
           </section>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 

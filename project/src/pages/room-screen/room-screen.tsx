@@ -8,6 +8,7 @@ import { Reviews } from '../../types/review';
 import Map from '../../components/map/map';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
+import { Helmet } from 'react-helmet-async';
 
 type RoomScreenProps = {
   reviews: Reviews;
@@ -23,7 +24,11 @@ function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
   };
 
   return (
-    <>
+    <div className="page">
+      <Helmet>
+        <title>six cities simple: property</title>
+      </Helmet>
+
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -181,7 +186,7 @@ function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
           </section>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 

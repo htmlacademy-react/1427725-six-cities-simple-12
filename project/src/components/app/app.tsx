@@ -7,6 +7,7 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { Reviews } from '../../types/review';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import { HelmetProvider } from 'react-helmet-async';
 
 type AppProps = {
   reviews: Reviews;
@@ -23,26 +24,28 @@ function App({ reviews }: AppProps): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainScreen />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<LoginScreen />}
-        />
-        <Route
-          path={AppRoute.RoomId}
-          element={<RoomScreen reviews={reviews} />}
-        />
-        <Route
-          path="*"
-          element={<NotFoundScreen />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<MainScreen />}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<LoginScreen />}
+          />
+          <Route
+            path={AppRoute.RoomId}
+            element={<RoomScreen reviews={reviews} />}
+          />
+          <Route
+            path="*"
+            element={<NotFoundScreen />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
