@@ -6,7 +6,7 @@ import { logoutAction } from '../../store/api-actions';
 
 function HeaderProfile(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const userName: string | undefined = 'Oliver.conner@gmail.com';
+  const email = useAppSelector((state) => state.email);
   const dispatch = useAppDispatch();
 
   return (
@@ -16,7 +16,7 @@ function HeaderProfile(): JSX.Element {
           authorizationStatus === AuthorizationStatus.Auth ? (
             <div className="header__nav-profile">
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-              <span className="header__user-name user__name">{userName}</span>
+              <span className="header__user-name user__name">{email}</span>
             </div>
           ) : (
             <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
