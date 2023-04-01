@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { logoutAction } from '../../store/api-actions';
 
 
 function HeaderProfile(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const userName: string | undefined = 'Oliver.conner@gmail.com';
+  const dispatch = useAppDispatch();
 
   return (
     <ul className="header__nav-list">
@@ -27,7 +29,14 @@ function HeaderProfile(): JSX.Element {
       {
         authorizationStatus === AuthorizationStatus.Auth ? (
           <li className="header__nav-item">
-            <Link className="header__nav-link" to="/">
+            <Link
+              className="header__nav-link"
+              onClick={(evt) => {
+                evt.preventDefault();
+                dispatch(logoutAction());
+              }}
+              to="/"
+            >
               <span className="header__signout">Sign out</span>
             </Link>
           </li>) : null
