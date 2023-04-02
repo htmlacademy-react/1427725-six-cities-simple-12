@@ -1,5 +1,3 @@
-import { OfferId } from './types/offer-id';
-
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -45,5 +43,5 @@ export class APIRoute {
   static Hotels = '/hotels';
   static Login = '/login';
   static Logout = '/logout';
-  static HotelById = (id: OfferId): string => `/hotels/${id}`;
+  static HotelById = (id: number): string => `/hotels/${id}`;
 }
