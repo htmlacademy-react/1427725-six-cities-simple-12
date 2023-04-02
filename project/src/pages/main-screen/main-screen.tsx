@@ -18,6 +18,7 @@ function MainScreen(): JSX.Element {
   const [sortType, setSortType] = useState(initialSortType);
 
   const cityOffers = offers.filter((offer) => offer.city.name === activeCity);
+  const city = offers.find((offer) => offer.city.name === activeCity)?.city;
   const cityOffersCount = cityOffers.length;
   const isPageEmpty = cityOffersCount === 0;
   sortOffers(cityOffers, sortType);
@@ -77,7 +78,7 @@ function MainScreen(): JSX.Element {
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map offers={cityOffers} selectedOffer={activeCard}></Map>
+                  {city && <Map offers={cityOffers} selectedOffer={activeCard} city={city} />}
                 </section>
               </div>
             </div>
