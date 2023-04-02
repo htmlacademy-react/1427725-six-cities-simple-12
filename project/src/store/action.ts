@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CityName } from '../const';
-import { Offers } from '../types/offer';
+import { ActiveOffer, Offers } from '../types/offer';
 import { AppRoute, AuthorizationStatus } from '../const';
 import { Email } from '../types/email';
 
@@ -15,3 +15,5 @@ export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersD
 export const redirectToRoute = createAction<AppRoute>('page/redirectToRoute');
 
 export const setEmail = createAction<Email>('data/setEmail');
+
+export const setOffer = createAction<ActiveOffer>('data/setOffer');

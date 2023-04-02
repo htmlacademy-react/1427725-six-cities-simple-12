@@ -1,3 +1,5 @@
+import { OfferId } from './types/offer-id';
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -39,8 +41,9 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum APIRoute {
-  Hotels = '/hotels',
-  Login = '/login',
-  Logout = '/logout',
+export class APIRoute {
+  static Hotels = '/hotels';
+  static Login = '/login';
+  static Logout = '/logout';
+  static HotelById = (id: OfferId): string => `/hotels/${id}`;
 }
