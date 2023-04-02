@@ -2,11 +2,12 @@ import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state.js';
 import { Offer, Offers } from '../types/offer';
-import { loadOffers, redirectToRoute, requireAuthorization, setEmail, setOffer, setOffersDataLoadingStatus } from './action';
+import { loadOffers, redirectToRoute, requireAuthorization, setEmail, setOffer, setOffersDataLoadingStatus, setOffersNearby, setReviews } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
+import { Reviews } from '../types/review.js';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -76,8 +77,20 @@ export const fetchSingleOfferAction = createAsyncThunk<void, number, {
   'data/fetchSingleOffer',
   async (offerId, { dispatch, extra: api }) => {
     dispatch(setOffersDataLoadingStatus(true));
-    const { data } = await api.get<Offer>(APIRoute.HotelById(offerId));
-    dispatch(setOffer(data));
+
+    const [
+      { data: offer },
+      { data: offersNearby },
+      { data: reviews }
+    ] = await Promise.all([
+      api.get<Offer>(APIRoute.HotelById(offerId)),
+      api.get<Offers>(APIRoute.HotelsNearbyById(offerId)),
+      api.get<Reviews>(APIRoute.CommentsById(offerId))
+    ]);
+
+    dispatch(setOffer(offer));
+    dispatch(setOffersNearby(offersNearby));
+    dispatch(setReviews(reviews));
     dispatch(setOffersDataLoadingStatus(false));
   },
 );

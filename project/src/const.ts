@@ -44,4 +44,6 @@ export class APIRoute {
   static Login = '/login';
   static Logout = '/logout';
   static HotelById = (id: number): string => `/hotels/${id}`;
+  static HotelsNearbyById = (id: number): string => `/hotels/${id}/nearby`;
+  static CommentsById = (id: number): string => `/comments/${id}`;
 }
