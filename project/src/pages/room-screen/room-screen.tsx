@@ -3,7 +3,6 @@ import CommentForm from '../../components/comment-form/comment-form';
 import Logo from '../../components/logo/logo';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import { ActiveOffer } from '../../types/offer';
-import { Reviews } from '../../types/review';
 import Map from '../../components/map/map';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
@@ -11,18 +10,15 @@ import { Helmet } from 'react-helmet-async';
 import HeaderProfile from '../../components/header-profile/header-profile';
 import { AuthorizationStatus } from '../../const';
 
-type RoomScreenProps = {
-  reviews: Reviews;
-}
-
-function RoomScreen({ reviews }: RoomScreenProps): JSX.Element {
+function RoomScreen(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const offers = useAppSelector((state) => state.offers);
-  const offersNearby = offers.slice(0, 3);
+  const offer = useAppSelector((state) => state.offer);
+  const offersNearby = useAppSelector((state) => state.offersNearby);
+  const reviews = useAppSelector((state) => state.reviews);
   const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
 
-  const handleActiveCardChange = (offer: ActiveOffer) => {
-    setActiveCard(offer);
+  const handleActiveCardChange = (activeOffer: ActiveOffer) => {
+    setActiveCard(activeOffer);
   };
 
   return (
