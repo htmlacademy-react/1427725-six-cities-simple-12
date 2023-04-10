@@ -24,22 +24,10 @@ function App(): JSX.Element {
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
         <Routes>
-          <Route
-            path={AppRoute.Main}
-            element={<MainScreen />}
-          />
-          <Route
-            path={AppRoute.Login}
-            element={<LoginScreen />}
-          />
-          <Route
-            path={AppRoute.RoomId}
-            element={<RoomScreen />}
-          />
-          <Route
-            path="*"
-            element={<NotFoundScreen />}
-          />
+          <Route index element={<MainScreen />} />
+          <Route path={AppRoute.Login} element={<LoginScreen />} />
+          <Route path={AppRoute.OfferId} element={<RoomScreen />} />
+          <Route path="*" element={<NotFoundScreen />} />
         </Routes>
       </HistoryRouter>
     </HelmetProvider>
