@@ -117,7 +117,7 @@ function RoomScreen(): JSX.Element {
               </div>
               <section className="property__reviews reviews">
                 <ReviewsList reviews={reviews} />
-                {authorizationStatus === AuthorizationStatus.Auth && <CommentForm />}
+                {authorizationStatus === AuthorizationStatus.Auth && <CommentForm hotelId={offer.id} />}
               </section>
             </div>
           </div>

@@ -7,7 +7,7 @@ import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
-import { Reviews } from '../types/review.js';
+import { Reviews, NewReview } from '../types/review.js';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -91,6 +91,20 @@ export const fetchSingleOfferAction = createAsyncThunk<void, number, {
     dispatch(setOffer(offer));
     dispatch(setOffersNearby(offersNearby));
     dispatch(setReviews(reviews));
+    dispatch(setOffersDataLoadingStatus(false));
+  },
+);
+
+export const createReviewAction = createAsyncThunk<void, NewReview, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/createReviewAction',
+  async ({ comment, rating, hotelId }, { dispatch, extra: api }) => {
+    dispatch(setOffersDataLoadingStatus(true));
+    const { data: comments } = await api.post<Reviews>(APIRoute.CommentsById(hotelId), { comment, rating });
+    dispatch(setReviews(comments));
     dispatch(setOffersDataLoadingStatus(false));
   },
 );

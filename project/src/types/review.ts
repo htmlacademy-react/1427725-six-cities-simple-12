@@ -13,4 +13,10 @@ export type Review = {
   date: string;
 }
 
+export type NewReview = {
+  comment: string;
+  rating: number;
+  hotelId: number;
+}
+
 export type Reviews = Review[];

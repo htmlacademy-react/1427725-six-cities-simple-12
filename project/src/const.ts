@@ -47,3 +47,7 @@ export class APIRoute {
   static HotelsNearbyById = (id: number): string => `/hotels/${id}/nearby`;
   static CommentsById = (id: number): string => `/comments/${id}`;
 }
+
+export const RATING_STARS_COUNT = 5;
+
+export const RATING_TITLES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
