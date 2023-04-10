@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { Offers, Offer, City } from '../../types/offer';
+import { Offers, City, ActiveOffer } from '../../types/offer';
 import { Icon, Marker } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import useMap from '../../hooks/useMap';
@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
   offers: Offers;
-  selectedOffer: Offer | undefined;
+  selectedOffer: ActiveOffer;
   city: City;
 }
 

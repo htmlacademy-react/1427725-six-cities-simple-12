@@ -8,7 +8,7 @@ import { fetchSingleOfferAction } from '../../store/api-actions';
 
 type CardProps = {
   offer: Offer;
-  onActiveCardChange: (activeOffer: ActiveOffer) => void;
+  onActiveCardChange?: (activeOffer: ActiveOffer) => void;
 }
 
 function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
@@ -19,7 +19,9 @@ function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
 
   const listItemHoverHandler = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    onActiveCardChange(offer);
+    if (onActiveCardChange) {
+      onActiveCardChange(offer);
+    }
   };
 
   return (

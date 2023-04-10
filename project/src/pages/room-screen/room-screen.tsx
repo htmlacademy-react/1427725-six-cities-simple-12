@@ -2,9 +2,7 @@ import CardsList from '../../components/cards-list/cards-list';
 import CommentForm from '../../components/comment-form/comment-form';
 import Logo from '../../components/logo/logo';
 import ReviewsList from '../../components/reviews-list/reviews-list';
-import { ActiveOffer } from '../../types/offer';
 import Map from '../../components/map/map';
-import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import { Helmet } from 'react-helmet-async';
 import HeaderProfile from '../../components/header-profile/header-profile';
@@ -17,11 +15,11 @@ function RoomScreen(): JSX.Element {
   const offer = useAppSelector((state) => state.offer);
   const offersNearby = useAppSelector((state) => state.offersNearby);
   const reviews = useAppSelector((state) => state.reviews);
-  const [activeCard, setActiveCard] = useState<ActiveOffer>(undefined);
 
-  const handleActiveCardChange = (activeOffer: ActiveOffer) => {
-    setActiveCard(activeOffer);
-  };
+  const mapOffers = [...offersNearby];
+  if (offer) {
+    mapOffers.push(offer);
+  }
 
   if (offer === undefined) {
     return <div />;
@@ -124,14 +122,14 @@ function RoomScreen(): JSX.Element {
             </div>
           </div>
           <section className="property__map map">
-            {offer && <Map offers={offersNearby} selectedOffer={activeCard} city={offer.city}></Map>}
+            {offer && <Map offers={mapOffers} selectedOffer={offer} city={offer.city}></Map>}
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <CardsList offers={offersNearby} onActiveCardChange={handleActiveCardChange} />
+              <CardsList offers={offersNearby} />
             </div>
           </section>
         </div>
