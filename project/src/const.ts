@@ -1,7 +1,7 @@
 export enum AppRoute {
   Main = '/',
   Login = '/login',
-  RoomId = '/offer/:id',
+  OfferId = '/offer/:id',
   Room = '/offer',
 }
 
@@ -39,8 +39,15 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum APIRoute {
-  Hotels = '/hotels',
-  Login = '/login',
-  Logout = '/logout',
+export class APIRoute {
+  static Hotels = '/hotels';
+  static Login = '/login';
+  static Logout = '/logout';
+  static HotelById = (id: number): string => `/hotels/${id}`;
+  static HotelsNearbyById = (id: number): string => `/hotels/${id}/nearby`;
+  static CommentsById = (id: number): string => `/comments/${id}`;
 }
+
+export const RATING_STARS_COUNT = 5;
+
+export const RATING_TITLES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];

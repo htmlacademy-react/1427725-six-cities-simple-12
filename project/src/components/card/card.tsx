@@ -3,19 +3,25 @@ import { AppRoute } from '../../const';
 import { ActiveOffer, Offer } from '../../types/offer';
 import { MouseEvent } from 'react';
 import { convertRatingToWitdh } from '../../utils';
+import { useAppDispatch } from '../../hooks';
+import { fetchSingleOfferAction } from '../../store/api-actions';
 
 type CardProps = {
   offer: Offer;
-  onActiveCardChange: (activeOffer: ActiveOffer) => void;
+  onActiveCardChange?: (activeOffer: ActiveOffer) => void;
 }
 
 function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
   const { isPremium, previewImage, price, rating, title, type } = offer;
   const roomLink = `${AppRoute.Room}/${offer.id}`;
 
+  const dispatch = useAppDispatch();
+
   const listItemHoverHandler = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    onActiveCardChange(offer);
+    if (onActiveCardChange) {
+      onActiveCardChange(offer);
+    }
   };
 
   return (
@@ -27,7 +33,12 @@ function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
           <span>Premium</span>
         </div>) : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={roomLink}>
+        <Link
+          to={roomLink}
+          onClick={() => {
+            dispatch(fetchSingleOfferAction(offer.id));
+          }}
+        >
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place"></img>
         </Link>
       </div>

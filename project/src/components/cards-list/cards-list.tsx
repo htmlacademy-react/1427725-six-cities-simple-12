@@ -3,7 +3,7 @@ import Card from '../card/card';
 
 type CardsListProps = {
   offers: Offers;
-  onActiveCardChange: (activeOffer: ActiveOffer) => void;
+  onActiveCardChange?: ((activeOffer: ActiveOffer) => void);
 }
 
 function CardsList({ offers, onActiveCardChange }: CardsListProps): JSX.Element {
