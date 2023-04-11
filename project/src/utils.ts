@@ -26,8 +26,4 @@ const sortOffers = (offers: Offers, sortType: SortTypeItem): void => {
   offers.sort(compareFn);
 };
 
-const delay = async (ms: number): Promise<void> => {
-  await new Promise<void>((resolve) => { setTimeout(() => resolve(), ms); });
-};
-
-export { convertRatingToWitdh, sortOffers, delay };
+export { convertRatingToWitdh, sortOffers };
