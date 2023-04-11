@@ -3,25 +3,49 @@ import CommentForm from '../../components/comment-form/comment-form';
 import Logo from '../../components/logo/logo';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Helmet } from 'react-helmet-async';
 import HeaderProfile from '../../components/header-profile/header-profile';
 import { AuthorizationStatus } from '../../const';
 import { convertRatingToWitdh } from '../../utils';
 import cn from 'classnames';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { fetchSingleOfferAction } from '../../store/api-actions';
+import { setOffersDataLoadingStatus } from '../../store/action';
 
 function RoomScreen(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const offer = useAppSelector((state) => state.offer);
   const offersNearby = useAppSelector((state) => state.offersNearby);
   const reviews = useAppSelector((state) => state.reviews);
+  const isLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async () => {
+      let isMounted = true;
+
+      if (!id || !isMounted) {
+        return;
+      }
+
+      await dispatch(fetchSingleOfferAction(id));
+
+      return () => {
+        isMounted = false;
+      };
+    })();
+  }, [dispatch, id]);
+
 
   const mapOffers = [...offersNearby];
   if (offer) {
     mapOffers.push(offer);
   }
 
-  if (offer === undefined) {
+  if (!offer || authorizationStatus === AuthorizationStatus.Unknown || isLoading) {
     return <div />;
   }
 

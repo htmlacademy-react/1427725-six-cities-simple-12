@@ -43,9 +43,9 @@ export class APIRoute {
   static Hotels = '/hotels';
   static Login = '/login';
   static Logout = '/logout';
-  static HotelById = (id: number): string => `/hotels/${id}`;
-  static HotelsNearbyById = (id: number): string => `/hotels/${id}/nearby`;
-  static CommentsById = (id: number): string => `/comments/${id}`;
+  static HotelById = (id: string): string => `/hotels/${id}`;
+  static HotelsNearbyById = (id: string): string => `/hotels/${id}/nearby`;
+  static CommentsById = (id: string): string => `/comments/${id}`;
 }
 
 export const RATING_STARS_COUNT = 5;
