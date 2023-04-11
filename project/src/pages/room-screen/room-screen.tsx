@@ -12,7 +12,6 @@ import cn from 'classnames';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchSingleOfferAction } from '../../store/api-actions';
-import { setOffersDataLoadingStatus } from '../../store/action';
 
 function RoomScreen(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
