@@ -36,7 +36,7 @@ function Card({ offer, onActiveCardChange }: CardProps): JSX.Element {
         <Link
           to={roomLink}
           onClick={() => {
-            dispatch(fetchSingleOfferAction(offer.id));
+            dispatch(fetchSingleOfferAction(offer.id.toString()));
           }}
         >
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place"></img>

@@ -69,14 +69,13 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchSingleOfferAction = createAsyncThunk<void, number, {
+export const fetchSingleOfferAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchSingleOffer',
   async (offerId, { dispatch, extra: api }) => {
-    dispatch(setOffersDataLoadingStatus(true));
 
     const [
       { data: offer },
@@ -91,7 +90,6 @@ export const fetchSingleOfferAction = createAsyncThunk<void, number, {
     dispatch(setOffer(offer));
     dispatch(setOffersNearby(offersNearby));
     dispatch(setReviews(reviews));
-    dispatch(setOffersDataLoadingStatus(false));
   },
 );
 
@@ -103,7 +101,7 @@ export const createReviewAction = createAsyncThunk<void, NewReview, {
   'data/createReviewAction',
   async ({ comment, rating, hotelId }, { dispatch, extra: api }) => {
     dispatch(setOffersDataLoadingStatus(true));
-    const { data: comments } = await api.post<Reviews>(APIRoute.CommentsById(hotelId), { comment, rating });
+    const { data: comments } = await api.post<Reviews>(APIRoute.CommentsById(hotelId.toString()), { comment, rating });
     dispatch(setReviews(comments));
     dispatch(setOffersDataLoadingStatus(false));
   },
